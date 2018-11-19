@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="sketch.js"></script>
+</head>
+<body>
+	<style>
+		body
+		{
+			overflow: hidden;
+			background-color: #004060;
+		}
+	</style>
+	<script>
+		 	var colors = ['#69D2E7', '#1B676B', '#BEF202', '#EBE54D', '#00CDAC', '#1693A5', '#F9D423', '#FF4E50', '#E7204E', '#0CCABA', '#FF006F'];
+		 	var a=new Audio();
+		a.src='Rihanna_-_Umbrella (feat. Jay-Z).mp3';
+		a.autoplay='true';
+		console.log(a);
+		var b=new AudioContext;
+	    var d=b.createScriptProcessor(2048,1,1);
+	    console.log(d);
+	    var y=b.createAnalyser();
+	    console.log(y);
+	    var dj=b.createMediaElementSource(a);
+	    console.log(dj);
+	    var connect1=dj.connect(y);
+	    console.log(connect1);
+	    var connect2=y.connect(d);
+	    console.log(connect2);
+	    d.connect(b.destination);
+	    dj.connect(b.destination);
+	    var array=new Uint8Array(y.frequencyBinCount);
+	    console.log(array);
+	       d.onaudioprocess=function ()
+	    {
+	    	hj=y.getByteFrequencyData(array);
+
+	    }
+		function my(x,y)
+		{
+			this.rolex;
+		}
+		my.prototype=
+		{
+			rolex:function (x,y,r)
+			{
+				this.x=x;
+				this.y=y;
+                this.color=random(colors);
+                this.lw=random(1,3);
+                this.xpl=random(-2,2);
+                this.ypl=random(-2,-1);
+			},
+			draw:function (tato)
+			{
+                tato.beginPath();
+                tato.arc(this.x,this.y,this.lw,0,TWO_PI);
+                tato.fillStyle=this.color;
+                tato.shadowOffsetX = 0;
+                tato.shadowOffsetY = 0;
+                tato.shadowBlur = 20;
+                tato.shadowColor = this.color;
+                tato.fill();
+			},
+			yes:function ()
+			{
+				this.x+=this.xpl;
+				this.y+=this.ypl;
+				this.lw=(array[1]*0.1);
+			}
+
+		};
+
+
+		var xaxa=Sketch.create({});
+		var lala=[];
+		xaxa.setup=()=>
+		{
+			var x,y,xx,yy;
+			for(var i=0;i<20;i++)
+			{
+			x=random(xaxa.width);
+			y=xaxa.height+200;
+			xaxa.rock(x,y);
+		    }
+		}
+		xaxa.rock=(x,y)=>
+		{
+			var tiqua=new my();
+			tiqua.rolex(x,y);
+			lala.push(tiqua);
+		}
+		xaxa.draw=()=>
+		{
+			for(var i=0;i<lala.length;i++)
+			{
+				lala[i].draw(xaxa);
+			}
+			xaxa.globalCompositeOperation='lighten';
+		}
+		xaxa.update=()=>
+
+		{
+			    for(var i=0;i<lala.length;i++)
+			{
+				lala[i].yes();
+			}
+			if(lala.length>700)
+			{
+				lala.shift();
+			}
+		}
+		setInterval(xaxa.reklam=()=>
+		{
+			var x,y;
+			for(var i=0;i<20;i++)
+			{
+			x=random(xaxa.width);
+			y=xaxa.height+200;
+			xaxa.rock(x,y);
+		    }
+		},5000);
+	</script>
+</body>
+</html>
